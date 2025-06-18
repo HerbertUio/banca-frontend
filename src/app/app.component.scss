@@ -1,0 +1,9 @@
+.main-content {
+    transition: margin-left .3s;
+}
+
+@media (min-width: 992px) {
+    .main-content {
+        margin-left: 280px;
+    }
+}

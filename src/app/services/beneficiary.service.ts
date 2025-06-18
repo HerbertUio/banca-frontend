@@ -22,4 +22,8 @@ export class BeneficiaryService {
   deleteBeneficiary(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`, { headers: this.authService.getAuthHeaders() });
   }
+
+  reactivateBeneficiary(id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}/reactivate`, {}, { headers: this.authService.getAuthHeaders() });
+  }
 }

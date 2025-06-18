@@ -1,2 +1,13 @@
-<router-outlet />
+<div *ngIf="isLoggedIn()">
+  <app-navbar (sidebarToggle)="toggleSidebar()"></app-navbar>
+  <div class="d-flex">
+    <app-sidebar [isOpen]="sidebarOpen"></app-sidebar>
+    <main class="container-fluid p-4 main-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
 
+<div *ngIf="!isLoggedIn()">
+  <router-outlet></router-outlet>
+</div>

@@ -1,1 +1,75 @@
-<p>transferir works!</p>
+<div class="container-fluid">
+  <h1 class="mb-4">Realizar Transferencia</h1>
+
+  <div class="row">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <i class="bi bi-send-fill"></i> Nueva Transferencia
+        </div>
+        <div class="card-body">
+          <div *ngIf="isLoading" class="text-center">
+            <div class="spinner-border" role="status"></div>
+            <p>Cargando datos...</p>
+          </div>
+
+          <form *ngIf="!isLoading" (ngSubmit)="realizarTransferencia()">
+            <div class="mb-3">
+              <label for="sourceAccount" class="form-label">Desde mi cuenta:</label>
+              <select
+                id="sourceAccount"
+                class="form-select"
+                [(ngModel)]="transferencia.sourceAccountNumber"
+                name="sourceAccount"
+                required>
+                <option value="" disabled>Seleccione una cuenta de origen</option>
+                <option *ngFor="let cuenta of misCuentas" [value]="cuenta.accountNumber">
+                  {{ cuenta.type }} - N° {{ cuenta.accountNumber }} (Saldo: {{ cuenta.balance | currency }})
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="targetAccount" class="form-label">Para mi beneficiario:</label>
+              <select
+                id="targetAccount"
+                class="form-select"
+                [(ngModel)]="transferencia.targetAccountNumber"
+                name="targetAccount"
+                required>
+                <option value="" disabled>Seleccione un beneficiario</option>
+                <option *ngFor="let b of beneficiarios" [value]="b.account?.accountNumber">
+                  {{ b.account?.user?.profile?.name }} {{ b.account?.user?.profile?.lastName }} - N° {{ b.account?.accountNumber }}
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="amount" class="form-label">Monto a transferir:</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="amount"
+                  [(ngModel)]="transferencia.amount"
+                  name="amount"
+                  placeholder="0.00"
+                  min="0.01"
+                  step="0.01"
+                  required>
+              </div>
+            </div>
+
+            <div *ngIf="mensajeExito" class="alert alert-success">{{ mensajeExito }}</div>
+            <div *ngIf="mensajeError" class="alert alert-danger">{{ mensajeError }}</div>
+
+            <button type="submit" class="btn btn-success w-100">
+              <i class="bi bi-check-circle"></i> Confirmar Transferencia
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

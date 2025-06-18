@@ -8,7 +8,8 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule],
+  standalone: true
 })
 export class LoginComponent {
   credentials = {
@@ -22,7 +23,6 @@ export class LoginComponent {
   onSubmit() {
     this.authService.login(this.credentials).subscribe({
       next: () => {
-        // La navegación se maneja en el servicio
       },
       error: (err) => {
         this.errorMessage = 'Error en el email o contraseña. Por favor, intente de nuevo.';

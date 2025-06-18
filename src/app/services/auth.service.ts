@@ -16,9 +16,7 @@ export class AuthService {
   login(credentials: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/login`, credentials, { responseType: 'text' }).pipe(
       tap(() => {
-        // Almacenamos las credenciales para futuras peticiones
         localStorage.setItem('credentials', btoa(`${credentials.email}:${credentials.password}`));
-        // Obtenemos y almacenamos la información del usuario logueado
         this.fetchAndStoreUserInfo();
       })
     );

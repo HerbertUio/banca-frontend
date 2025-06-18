@@ -1,1 +1,16 @@
-<p>dashboard works!</p>
+<div class="container-fluid">
+    <h1 class="mb-4">Bienvenido, {{ cliente?.profile?.name }} {{ cliente?.profile?.lastName }}</h1>
+
+    <div class="card shadow-sm" *ngIf="cliente">
+        <div class="card-header">
+            <i class="bi bi-person-vcard"></i> Tu Información Personal
+        </div>
+        <div class="card-body">
+            <p><strong>Email:</strong> {{ cliente.email }}</p>
+            <p><strong>Cédula de Identidad:</strong> {{ cliente.profile?.ci }}</p>
+            <p><strong>Dirección:</strong> {{ cliente.profile?.address }}</p>
+            <p><strong>Móvil:</strong> {{ cliente.profile?.mobile }}</p>
+            <p><strong>Estado:</strong> <span class="badge" [ngClass]="{'bg-success': cliente.profile?.status === 'Activo', 'bg-danger': cliente.profile?.status !== 'Activo'}">{{ cliente.profile?.status }}</span></p>
+        </div>
+    </div>
+</div>

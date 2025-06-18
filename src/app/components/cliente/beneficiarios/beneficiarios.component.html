@@ -1,1 +1,80 @@
-<p>beneficiarios works!</p>
+<div class="container-fluid">
+  <h1 class="mb-4">Gestión de Beneficiarios</h1>
+
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <i class="bi bi-person-plus-fill"></i> Agregar Nuevo Beneficiario
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="agregarBeneficiario()">
+            <div class="mb-3">
+              <label for="accountNumber" class="form-label">Número de Cuenta del Beneficiario</label>
+              <input
+                type="text"
+                class="form-control"
+                id="accountNumber"
+                [(ngModel)]="nuevoBeneficiario.targetAccountNumber"
+                name="accountNumber"
+                placeholder="Ingrese el número de cuenta"
+                required>
+            </div>
+
+            <div *ngIf="mensajeExito" class="alert alert-success mt-3">{{ mensajeExito }}</div>
+            <div *ngIf="mensajeError" class="alert alert-danger mt-3">{{ mensajeError }}</div>
+
+            <button type="submit" class="btn btn-primary w-100">Agregar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <i class="bi bi-people-fill"></i> Mis Beneficiarios
+        </div>
+        <div class="card-body">
+          <div *ngIf="isLoading" class="text-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+
+          <div *ngIf="!isLoading && beneficiarios.length === 0" class="text-center">
+            <p>Aún no has registrado beneficiarios.</p>
+          </div>
+
+          <ul *ngIf="!isLoading && beneficiarios.length > 0" class="list-group">
+            <li *ngFor="let b of beneficiarios"
+                class="list-group-item d-flex justify-content-between align-items-center"
+                [class.bg-light]="b.deleted"
+                [class.text-muted]="b.deleted">
+
+              <div>
+                <div class="fw-bold">{{ b.account?.user?.profile?.name }} {{ b.account?.user?.profile?.lastName }}</div>
+                <small>N° Cuenta: {{ b.account?.accountNumber }} ({{ b.account?.currency }})</small>
+                <span *ngIf="b.deleted" class="badge bg-secondary ms-2">Eliminado</span>
+              </div>
+
+              <div>
+                <button *ngIf="!b.deleted" class="btn btn-sm btn-outline-danger"
+                        (click)="eliminarBeneficiario(b.id)"
+                        title="Eliminar Beneficiario">
+                  <i class="bi bi-trash"></i>
+                </button>
+
+                <button *ngIf="b.deleted" class="btn btn-sm btn-outline-success"
+                        (click)="reactivarBeneficiario(b.id)"
+                        title="Reactivar Beneficiario">
+                  <i class="bi bi-arrow-counterclockwise"></i>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
