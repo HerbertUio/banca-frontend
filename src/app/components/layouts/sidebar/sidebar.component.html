@@ -1,0 +1,55 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebar" [class.show]="isOpen">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <span class="fs-4">Menú {{ role }}</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li *ngIf="role === 'CLIENTE'" class="nav-item">
+            <a routerLink="/cliente/dashboard" routerLinkActive="active" class="nav-link text-white">
+                <i class="bi bi-house-door"></i> Dashboard
+            </a>
+        </li>
+        <li *ngIf="role === 'CLIENTE'">
+            <a routerLink="/cliente/cuentas" routerLinkActive="active" class="nav-link text-white">
+                <i class="bi bi-wallet2"></i> Mis Cuentas
+            </a>
+        </li>
+        <li *ngIf="role === 'CLIENTE'">
+            <a routerLink="/cliente/beneficiarios" routerLinkActive="active" class="nav-link text-white">
+                <i class="bi bi-people"></i> Beneficiarios
+            </a>
+        </li>
+        <li *ngIf="role === 'CLIENTE'">
+            <a routerLink="/cliente/transferir" routerLinkActive="active" class="nav-link text-white">
+                <i class="bi bi-send"></i> Realizar Transferencia
+            </a>
+        </li>
+
+        <li *ngIf="role === 'OPERADOR'" class="nav-item">
+            <a routerLink="/operador/dashboard" routerLinkActive="active" class="nav-link text-white">
+                <i class="bi bi-house-door"></i> Dashboard
+            </a>
+        </li>
+        <li *ngIf="role === 'OPERADOR'">
+            <a routerLink="/operador/transacciones" routerLinkActive="active" class="nav-link text-white">
+                <i class="bi bi-arrow-down-up"></i> Transacciones Manuales
+            </a>
+        </li>
+
+        <li *ngIf="role === 'ADMIN'" class="nav-item">
+            <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-link text-white">
+                <i class="bi bi-house-door"></i> Dashboard
+            </a>
+        </li>
+        <li *ngIf="role === 'ADMIN'">
+            <a routerLink="/admin/usuarios" routerLinkActive="active" class="nav-link text-white">
+                <i class="bi bi-person-circle"></i> Gestionar Usuarios
+            </a>
+        </li>
+         <li *ngIf="role === 'ADMIN'">
+            <a routerLink="/admin/crear-cuenta" routerLinkActive="active" class="nav-link text-white">
+                <i class="bi bi-plus-circle"></i> Crear Cuenta
+            </a>
+        </li>
+    </ul>
+</div>
