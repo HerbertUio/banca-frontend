@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router'; // Importar para los botones de navegación
 import { UserService } from '../../../services/user.service';
+import { AccountService } from '../../../services/account.service';
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [CommonModule, RouterLink], // Añadir RouterLink
+  imports: [CommonModule, RouterLink],
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.scss']
 })
@@ -14,8 +15,9 @@ export class UsuariosComponent implements OnInit {
   usuarios: any[] = [];
   isLoading = true;
   mensaje: string | null = null;
+  expandedUser: number | null = null;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private accountService: AccountService) {}
 
   ngOnInit(): void {
     this.cargarUsuarios();
@@ -40,7 +42,7 @@ export class UsuariosComponent implements OnInit {
       this.userService.deleteUser(id).subscribe({
         next: () => {
           this.mensaje = 'Usuario dado de baja correctamente.';
-          this.cargarUsuarios(); // Recargar la lista para reflejar el cambio
+          this.cargarUsuarios();
         },
         error: (err) => {
           this.mensaje = 'Error al dar de baja al usuario.';
@@ -49,4 +51,23 @@ export class UsuariosComponent implements OnInit {
       });
     }
   }
+  eliminarCuenta(cuentaId: number): void {
+    if (confirm('¿Estás seguro de que deseas dar de baja esta cuenta? Su estado cambiará a "Cerrada".')) {
+      this.accountService.deleteAccount(cuentaId).subscribe({
+        next: () => {
+          this.mensaje = 'Cuenta dada de baja correctamente.';
+          this.cargarUsuarios();
+        },
+        error: (err) => {
+          this.mensaje = 'Error al dar de baja la cuenta.';
+          console.error(err);
+        }
+      });
+    }
+  }
+
+  toggleExpand(userId: number): void {
+    this.expandedUser = this.expandedUser === userId ? null : userId;
+  }
+
 }

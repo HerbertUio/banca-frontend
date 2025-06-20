@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h1 class="mb-4">Mis Cuentas</h1>
+  <h1 class="mb-4">My Accounts</h1>
 
   <div *ngIf="isLoading" class="text-center">
     <div class="spinner-border" role="status">
@@ -25,11 +25,11 @@
           <h6 class="card-subtitle mb-2 text-muted">N° {{ cuenta.accountNumber }}</h6>
           <p class="card-text fs-3 fw-bold">{{ cuenta.balance | currency }}</p>
           <button
-            class="btn btn-primary"
+            class="btn btn-secondary"
             (click)="verTransacciones(cuenta)"
             data-bs-toggle="modal"
             data-bs-target="#transaccionesModal">
-            <i class="bi bi-card-list"></i> Ver Transacciones
+            <i class="bi bi-card-list"></i> Watch Transactions
           </button>
         </div>
       </div>

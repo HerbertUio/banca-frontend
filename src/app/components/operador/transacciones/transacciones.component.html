@@ -1,1 +1,90 @@
-<p>transacciones works!</p>
+<div class="container-fluid">
+  <h1 class="mb-4">Transacciones Manuales de Operador</h1>
+
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="deposito-tab" data-bs-toggle="tab" data-bs-target="#deposito" type="button" role="tab" aria-controls="deposito" aria-selected="true">
+            <i class="bi bi-box-arrow-in-down"></i> Depósito
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="retiro-tab" data-bs-toggle="tab" data-bs-target="#retiro" type="button" role="tab" aria-controls="retiro" aria-selected="false">
+            <i class="bi bi-box-arrow-up"></i> Retiro
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="transferencia-tab" data-bs-toggle="tab" data-bs-target="#transferencia" type="button" role="tab" aria-controls="transferencia" aria-selected="false">
+            <i class="bi bi-send"></i> Transferencia
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <div class="tab-content" id="myTabContent">
+
+        <div class="tab-pane fade show active" id="deposito" role="tabpanel" aria-labelledby="deposito-tab">
+          <h5 class="mb-3">Realizar un Depósito</h5>
+          <form (ngSubmit)="realizarDeposito()" class="row g-3">
+            <div class="col-md-6">
+              <label for="depositoCuenta" class="form-label">Número de Cuenta Destino</label>
+              <input type="text" class="form-control" id="depositoCuenta" name="depositoCuenta" [(ngModel)]="deposito.targetAccountNumber">
+            </div>
+            <div class="col-md-4">
+              <label for="depositoMonto" class="form-label">Monto</label>
+              <input type="number" class="form-control" id="depositoMonto" name="depositoMonto" [(ngModel)]="deposito.amount" min="0.01" step="0.01">
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+              <button type="submit" class="btn btn-primary w-100">Ejecutar</button>
+            </div>
+            <div *ngIf="mensajeDeposito" class="alert alert-success mt-3">{{ mensajeDeposito }}</div>
+            <div *ngIf="errorDeposito" class="alert alert-danger mt-3">{{ errorDeposito }}</div>
+          </form>
+        </div>
+
+        <div class="tab-pane fade" id="retiro" role="tabpanel" aria-labelledby="retiro-tab">
+          <h5 class="mb-3">Realizar un Retiro</h5>
+          <form (ngSubmit)="realizarRetiro()" class="row g-3">
+            <div class="col-md-6">
+              <label for="retiroCuenta" class="form-label">Número de Cuenta Origen</label>
+              <input type="text" class="form-control" id="retiroCuenta" name="retiroCuenta" [(ngModel)]="retiro.sourceAccountNumber">
+            </div>
+            <div class="col-md-4">
+              <label for="retiroMonto" class="form-label">Monto</label>
+              <input type="number" class="form-control" id="retiroMonto" name="retiroMonto" [(ngModel)]="retiro.amount" min="0.01" step="0.01">
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+              <button type="submit" class="btn btn-primary w-100">Ejecutar</button>
+            </div>
+            <div *ngIf="mensajeRetiro" class="alert alert-success mt-3">{{ mensajeRetiro }}</div>
+            <div *ngIf="errorRetiro" class="alert alert-danger mt-3">{{ errorRetiro }}</div>
+          </form>
+        </div>
+
+        <div class="tab-pane fade" id="transferencia" role="tabpanel" aria-labelledby="transferencia-tab">
+          <h5 class="mb-3">Realizar una Transferencia entre Cuentas</h5>
+          <form (ngSubmit)="realizarTransferencia()" class="row g-3">
+            <div class="col-md-5">
+              <label for="transferenciaOrigen" class="form-label">Cuenta Origen</label>
+              <input type="text" class="form-control" id="transferenciaOrigen" name="transferenciaOrigen" [(ngModel)]="transferencia.sourceAccountNumber">
+            </div>
+            <div class="col-md-5">
+              <label for="transferenciaDestino" class="form-label">Cuenta Destino</label>
+              <input type="text" class="form-control" id="transferenciaDestino" name="transferenciaDestino" [(ngModel)]="transferencia.targetAccountNumber">
+            </div>
+            <div class="col-md-2">
+              <label for="transferenciaMonto" class="form-label">Monto</label>
+              <input type="number" class="form-control" id="transferenciaMonto" name="transferenciaMonto" [(ngModel)]="transferencia.amount" min="0.01" step="0.01">
+            </div>
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn btn-primary w-100">Ejecutar Transferencia</button>
+            </div>
+            <div *ngIf="mensajeTransferencia" class="alert alert-success mt-3">{{ mensajeTransferencia }}</div>
+            <div *ngIf="errorTransferencia" class="alert alert-danger mt-3">{{ errorTransferencia }}</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

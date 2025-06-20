@@ -13,6 +13,7 @@ import { DashboardComponent as AdminDashboard } from './components/admin/dashboa
 import { UsuariosComponent } from './components/admin/usuarios/usuarios.component';
 import { CrearUsuarioComponent } from './components/admin/crear-usuario/crear-usuario.component';
 import { CrearCuentaComponent } from './components/admin/crear-cuenta/crear-cuenta.component';
+import { EditarUsuarioComponent } from './components/admin/editar-usuario/editar-usuario.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -33,6 +34,7 @@ export const routes: Routes = [
   { path: 'admin/usuarios', component: UsuariosComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] } },
   { path: 'admin/crear-usuario', component: CrearUsuarioComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] } },
   { path: 'admin/crear-cuenta', component: CrearCuentaComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] } },
+  { path: 'admin/editar-usuario/:id', component: EditarUsuarioComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] } },
 
   { path: '**', redirectTo: '/login' }
 ];

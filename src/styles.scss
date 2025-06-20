@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilos Globales */
+@import 'bootstrap/scss/bootstrap';
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #a2a5a7, #61696c, #e4e8e9);
+    color: #f0f0f0; /* Un color de texto base más suave para fondos oscuros */
+}
+
+/* Estilo para que las tarjetas tengan un fondo oscuro por defecto */
+.card {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.216); /* Fondo de tarjeta semi-transparente */
+    color: #fff;
+}

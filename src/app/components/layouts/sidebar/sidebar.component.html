@@ -1,27 +1,27 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebar" [class.show]="isOpen">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-secondary sidebar" [class.show]="isOpen">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <span class="fs-4">Menú {{ role }}</span>
+        <span class="fs-4">{{ role }}</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li *ngIf="role === 'CLIENTE'" class="nav-item">
             <a routerLink="/cliente/dashboard" routerLinkActive="active" class="nav-link text-white">
-                <i class="bi bi-house-door"></i> Dashboard
+                <i class="bi bi-house-door"></i> My information
             </a>
         </li>
         <li *ngIf="role === 'CLIENTE'">
             <a routerLink="/cliente/cuentas" routerLinkActive="active" class="nav-link text-white">
-                <i class="bi bi-wallet2"></i> Mis Cuentas
+                <i class="bi bi-wallet2"></i> Accounts
             </a>
         </li>
         <li *ngIf="role === 'CLIENTE'">
             <a routerLink="/cliente/beneficiarios" routerLinkActive="active" class="nav-link text-white">
-                <i class="bi bi-people"></i> Beneficiarios
+                <i class="bi bi-people"></i> Beneficiaries
             </a>
         </li>
         <li *ngIf="role === 'CLIENTE'">
             <a routerLink="/cliente/transferir" routerLinkActive="active" class="nav-link text-white">
-                <i class="bi bi-send"></i> Realizar Transferencia
+                <i class="bi bi-send"></i> Transfers
             </a>
         </li>
 
@@ -43,13 +43,13 @@
         </li>
         <li *ngIf="role === 'ADMIN'">
             <a routerLink="/admin/usuarios" routerLinkActive="active" class="nav-link text-white">
-                <i class="bi bi-person-circle"></i> Gestionar Usuarios
+                <i class="bi bi-person-circle"></i> Manage Users
             </a>
-        </li>
+        <!-- </li>
          <li *ngIf="role === 'ADMIN'">
             <a routerLink="/admin/crear-cuenta" routerLinkActive="active" class="nav-link text-white">
                 <i class="bi bi-plus-circle"></i> Crear Cuenta
             </a>
-        </li>
+        </li> -->
     </ul>
 </div>

@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Editar Usuario</h1>
+    <a routerLink="/admin/usuarios" class="btn btn-secondary">
+      <i class="bi bi-arrow-left-circle"></i> Volver a la Lista
+    </a>
+  </div>
+
+  <div *ngIf="isLoading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+
+  <div *ngIf="mensajeError && !isLoading" class="alert alert-danger">{{ mensajeError }}</div>
+
+  <div *ngIf="usuario && !isLoading" class="row">
+    <div class="col-md-10 col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <i class="bi bi-pencil-square"></i> Editando Perfil de: <strong>{{ profileData.name }} {{ profileData.lastName }}</strong>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="actualizarUsuario()">
+            <div class="mb-3">
+              <label class="form-label">Email (No editable)</label>
+              <input type="text" [value]="usuario.email" class="form-control" readonly>
+            </div>
+
+            <hr class="my-4">
+
+            <h5 class="mb-3">Información Editable del Perfil</h5>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" id="name" name="name" class="form-control" [(ngModel)]="profileData.name">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName" class="form-label">Apellido</label>
+                <input type="text" id="lastName" name="lastName" class="form-control" [(ngModel)]="profileData.lastName">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="mobile" class="form-label">Teléfono / Móvil</label>
+              <input type="number" id="mobile" name="mobile" class="form-control" [(ngModel)]="profileData.mobile">
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Dirección</label>
+              <input type="text" id="address" name="address" class="form-control" [(ngModel)]="profileData.address">
+            </div>
+            <div class="mb-3">
+              <label for="status" class="form-label">Estado del Perfil</label>
+              <select id="status" name="status" class="form-select" [(ngModel)]="profileData.status">
+                <option value="Activo">Activo</option>
+                <option value="Inactive">Inactivo</option>
+              </select>
+            </div>
+
+            <div *ngIf="mensajeExito" class="alert alert-success mt-3">{{ mensajeExito }}</div>
+
+            <button type="submit" class="btn btn-success w-100 mt-3">
+              <i class="bi bi-check-circle"></i> Guardar Cambios
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
