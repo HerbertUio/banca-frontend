@@ -1,1 +1,59 @@
-<p>dashboard works!</p>
+<div class="container-fluid">
+  <h1 class="mb-4">Panel de Administrador</h1>
+
+  <div class="row mb-4">
+    <div class="col-md-6 col-lg-4 mb-3">
+      <div class="card text-white bg-primary shadow-sm h-100">
+        <div class="card-body text-center">
+          <i class="bi bi-people-fill display-4"></i>
+          <h5 class="card-title mt-2">Total de Usuarios</h5>
+          <p *ngIf="!isLoading" class="card-text fs-2 fw-bold">{{ totalUsuarios }}</p>
+          <div *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-3">
+      <div class="card text-white bg-success shadow-sm h-100">
+        <div class="card-body text-center">
+          <i class="bi bi-wallet2 display-4"></i>
+          <h5 class="card-title mt-2">Total de Cuentas</h5>
+          <p *ngIf="!isLoading" class="card-text fs-2 fw-bold">{{ totalCuentas }}</p>
+           <div *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2 class="mb-3">Acciones Rápidas</h2>
+  <div class="row">
+    <div class="col-md-6 col-lg-4 mb-3">
+      <div class="card shadow-sm action-card h-100">
+        <a routerLink="/admin/usuarios" class="card-body text-decoration-none d-flex flex-column justify-content-center align-items-center">
+          <i class="bi bi-person-lines-fill display-4 text-secondary"></i>
+          <h5 class="card-title mt-2 text-dark">Gestionar Usuarios y Cuentas</h5>
+          <p class="card-text text-muted text-center">Ver, editar y dar de baja usuarios y sus cuentas.</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-3">
+      <div class="card shadow-sm action-card h-100">
+        <a routerLink="/admin/crear-usuario" class="card-body text-decoration-none d-flex flex-column justify-content-center align-items-center">
+          <i class="bi bi-person-plus-fill display-4 text-primary"></i>
+          <h5 class="card-title mt-2 text-dark">Crear Nuevo Usuario</h5>
+          <p class="card-text text-muted text-center">Registrar un nuevo cliente en el sistema.</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-3">
+      <div class="card shadow-sm action-card h-100">
+        <a routerLink="/admin/crear-cuenta" class="card-body text-decoration-none d-flex flex-column justify-content-center align-items-center">
+          <i class="bi bi-wallet-fill display-4 text-info"></i>
+          <h5 class="card-title mt-2 text-dark">Crear Nueva Cuenta</h5>
+          <p class="card-text text-muted text-center">Asignar una nueva cuenta bancaria a un usuario existente.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
